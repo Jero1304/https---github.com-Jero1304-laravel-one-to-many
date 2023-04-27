@@ -1,10 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-5">
         <div class="d-flex align-items-center">
             <div class="me-auto">
-                <h1>Title: {{ $project->title }}</h1>
+                <h1>Title:
+                    @if ($project->type)
+                        <span class="badge bg-warning rounded-pill">{{ $project->type->name }}</span>
+
+                    @else
+                        <span class="badge bg-secondary rounded-pill">Nessuna Categoria</span>
+                    @endif
+                </h1>
+
                 <p>Slug: {{ $project->slug }}</p>
             </div>
             <div class="d-flex">

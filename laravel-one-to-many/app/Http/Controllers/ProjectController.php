@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use illuminate\Support\Str;
@@ -27,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $types = Type::orderBy('name', 'asc')->get();
+        return view('projects.create', compact('types'));
     }
 
     /**
@@ -67,7 +69,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $types = Type::orderBy('name','asc')->get();
+        return view('projects.edit', compact('project','types'));
 
     }
 
@@ -108,10 +111,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if($project->trashed()){
+        if ($project->trashed()) {
             $project->forceDelete();
-        }
-        else{
+        } else {
             $project->delete();
         }
 

@@ -17,8 +17,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Slug</th>
+                    <th>Titolo</th>
+                    <th>Categoria</th>
                     <th>Data creazione</th>
                     <th>Data Modifica</th>
                     <th>Eliminato</th>
@@ -32,9 +32,9 @@
                         <td>
                             <a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a>
                         </td>
-                        <td>{{ $project->slug }}</td>
-                        <td>{{ $project->created_at }}</td>
-                        <td>{{ $project->updated_at }}</td>
+                        <td>{{$project->type ? $project->type->name : '-'}}</td>
+                        <td>{{ $project->created_at->format('d/m/Y') }}</td>
+                        <td>{{ $project->updated_at->format('d/m/Y') }}</td>
                         <td>{{ $project->trashed() ? 'Eliminato il: ' . $project->deleted_at : '' }}</td>
                         <td>
                             <div class="d-flex">
