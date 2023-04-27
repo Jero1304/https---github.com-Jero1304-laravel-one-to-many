@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdatePostRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,7 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
-                'required',
-                'max:150',
-                Rule::unique('posts','title')->ignore($this->post)
-            ],
+            'title' => 'required|max:150|unique:projects,title',
             'content' => 'nullable|string',
             
         ];

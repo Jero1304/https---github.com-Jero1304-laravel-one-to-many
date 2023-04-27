@@ -7,7 +7,7 @@
     </div>
 
     <div class="container py-5">
-        <form action="{{ route('posts.store')}}" method="post">
+        <form action="{{ route('projects.store')}}" method="post">
         @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/posts/{post:slug}/restore',[PostController::class,'restore'])->name('posts.restore')->withTrashed();
+    Route::post('/projects/{project:slug}/restore',[ProjectController::class,'restore'])->name('projects.restore')->withTrashed();
 
-    Route::resource('posts',PostController::class)->parameters([
-        'posts' => 'post:slug'
+    Route::resource('projects',ProjectController::class)->parameters([
+        'projects' => 'project:slug'
     ])->withTrashed(['show','update','edit', 'destroy']);
 });
 

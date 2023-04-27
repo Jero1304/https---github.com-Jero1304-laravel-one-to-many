@@ -3,11 +3,11 @@
 @section('content')
     <div class="container py-5">
         <div class="d-flex align-items-center">
-            <h1 class="me-auto py-3">Tutti i post</h1>
+            <h1 class="me-auto py-3">Tutti i project</h1>
 
 
             <div>
-                <a class="btn btn-primary" href="{{ route('posts.create') }}">Nuovo Post</a>
+                <a class="btn btn-primary" href="{{ route('projects.create') }}">Nuovo project</a>
             </div>
         </div>
     </div>
@@ -26,29 +26,29 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($posts as $post)
+                @forelse($projects as $project)
                     <tr>
-                        <td>{{ $post->id }}</td>
+                        <td>{{ $project->id }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                            <a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a>
                         </td>
-                        <td>{{ $post->slug }}</td>
-                        <td>{{ $post->created_at }}</td>
-                        <td>{{ $post->updated_at }}</td>
-                        <td>{{ $post->trashed() ? 'Eliminato il: ' . $post->deleted_at : '' }}</td>
+                        <td>{{ $project->slug }}</td>
+                        <td>{{ $project->created_at }}</td>
+                        <td>{{ $project->updated_at }}</td>
+                        <td>{{ $project->trashed() ? 'Eliminato il: ' . $project->deleted_at : '' }}</td>
                         <td>
                             <div class="d-flex">
-                            
-                                <a class="btn btn-sm btn-secondary" href="{{ route('posts.edit', $post) }}">Edit</a>
 
-                                <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                <a class="btn btn-sm btn-secondary" href="{{ route('projects.edit', $project) }}">Edit</a>
+
+                                <form action="{{ route('projects.destroy', $project) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <input class="btn btn-sn btn-danger" type="submit" value="Delete">
                                 </form>
 
-                                @if ($post->trashed())
-                                    <form action="{{ route('posts.restore', $post) }}" method="POST">
+                                @if ($project->trashed())
+                                    <form action="{{ route('projects.restore', $project) }}" method="POST">
                                         @csrf
                                         <input class="btn btn-sn btn-success" type="submit" value="Ripristina">
                                     </form>
@@ -58,7 +58,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <th colspan="6">Nessun post trovato</th>
+                        <th colspan="6">Nessun project trovato</th>
                     </tr>
                 @endforelse
             </tbody>
